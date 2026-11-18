@@ -1,0 +1,7 @@
+[build]
+target = "thumbv6m-none-eabi" # RP2040: Cortex-M0+
+
+[target.thumbv6m-none-eabi]
+# `cargo run --release` converts to UF2 and copies it to the Pico's
+# RPI-RP2 drive (Pico in BOOTSEL mode: see tools/bootsel.sh).
+runner = "elf2uf2-rs -d"

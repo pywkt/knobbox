@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+out/*
+!out/*.png
+!out/base.stl
+!out/panel.stl
+!out/knob.stl

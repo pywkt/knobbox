@@ -1,0 +1,43 @@
+[package]
+name = "knobbox-firmware"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "knobbox"
+path = "src/main.rs"
+test = false
+bench = false
+
+[features]
+# Every knob counts the other way, for encoders wired with A and B swapped:
+# `cargo run --release --features reverse-knobs`.
+reverse-knobs = []
+
+# Versions pinned to the embassy release tagged embassy-rp-v0.10.0
+# (examples/rp/Cargo.toml at that tag). Bump them together.
+[dependencies]
+knobbox-logic = { path = "../logic" }
+embedded-graphics = { version = "0.8", default-features = false }
+embassy-rp = { version = "=0.10.0", features = ["rp2040", "time-driver", "critical-section-impl"] }
+embassy-executor = { version = "=0.10.0", features = ["platform-cortex-m", "executor-thread"] }
+embassy-time = "=0.5.1"
+embassy-usb = "=0.6.0"
+embassy-usb-logger = "=0.6.0"
+embassy-futures = "=0.1.2"
+embassy-sync = "=0.8.0"
+cortex-m = { version = "0.7.7", features = ["inline-asm"] }
+cortex-m-rt = "0.7.5"
+log = "0.4"
+static_cell = "2"
+portable-atomic = { version = "1", features = ["critical-section"] }
+
+[profile.release]
+debug = true
+opt-level = "s"
+lto = true
+codegen-units = 1
+
+[profile.dev]
+opt-level = 1

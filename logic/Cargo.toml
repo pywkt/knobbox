@@ -1,0 +1,9 @@
+[package]
+name = "knobbox-logic"
+version = "0.1.0"
+edition = "2024"
+description = "Pure input logic for knobbox: encoder decoding, debouncing, MIDI encoding. Tested on the PC."
+publish = false
+
+[dependencies]
+embedded-graphics = { version = "0.8", default-features = false }
